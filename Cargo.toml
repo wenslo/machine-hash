@@ -1,0 +1,35 @@
+[package]
+name = "hardware_id"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "A tool to generate unique hardware ID"
+license = "MIT"
+
+[dependencies]
+sysinfo = "0.29"
+md-5 = "0.10"
+digest = "0.10"
+uuid = { version = "1.4", features = ["v4"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+hex = "0.4"
+thiserror = "1.0"
+log = "0.4"
+env_logger = "0.10"
+
+[target.'cfg(target_os = "windows")'.dependencies]
+winapi = { version = "0.3", features = ["winuser", "winerror"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+libc = "0.2"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+core-foundation = "0.9"
+core-foundation-sys = "0.8"
+mach = "0.3"
+libc = "0.2"
+IOKit-sys = "0.1"
+
+[build-dependencies]
+cc = "1.0" 
